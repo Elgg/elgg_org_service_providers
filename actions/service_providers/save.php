@@ -102,4 +102,4 @@ if ($picture_data && $picture_data['error'] !== UPLOAD_ERR_NO_FILE) {
 }
 
 elgg_clear_sticky_form('service_provider');
-forward($provider->getURL());
+forward('/service_providers/all');
