@@ -30,6 +30,8 @@ function service_providers_init() {
  */
 function service_providers_page_handler($page) {
 
+	elgg_push_breadcrumb('Service Providers', '/service_providers');
+
 	if (!isset($page[0])) {
 		$page[0] = 'all';
 	}

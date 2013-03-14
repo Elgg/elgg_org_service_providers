@@ -3,15 +3,17 @@
  * Edit service provider
  */
 
-$title = elgg_echo("Edit a service provider");
-elgg_push_breadcrumb($title);
-
 $guid = get_input('guid');
 $provider = get_entity($guid);
 
 if (!elgg_instanceof($provider, 'object', 'service_provider')) {
 	forward('/', 404);
 }
+
+elgg_push_breadcrumb($provider->title);
+$title = elgg_echo("Edit");
+elgg_push_breadcrumb($title);
+
 
 $vars = service_providers_prepare_form_vars($provider);
 $content = elgg_view_form('service_providers/save', array('enctype' => 'multipart/form-data'), $vars);

@@ -9,7 +9,7 @@ $provider = get_entity($guid);
 if (elgg_instanceof($provider, 'object', 'service_provider') && $provider->canEdit()) {
 	if ($provider->delete()) {
 		system_message("Service provider deleted");
-		forward('service_providers/all');
+		forward(REFERRER);
 	}
 }
 
