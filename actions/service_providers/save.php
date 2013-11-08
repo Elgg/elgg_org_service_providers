@@ -69,16 +69,16 @@ if ($picture_data && $picture_data['error'] !== UPLOAD_ERR_NO_FILE) {
 			$file->owner_guid = $guid;
 			$filename = $provider->getIconFilename($name);
 			if (!$filename) {
-				$error = true;
+				$error = "Can't get icon filename.";
 				break;
 			}
 			$file->setFilename($filename);
 			if (!$file->open('write')) {
-				$error = true;
+				$error = "Can't open icon file for writing.";
 				break;
 			}
 			if (!$file->write($resized)) {
-				$error = true;
+				$error = "Can't write icon file.";
 				break;
 			}
 			$file->close();
@@ -92,10 +92,8 @@ if ($picture_data && $picture_data['error'] !== UPLOAD_ERR_NO_FILE) {
 			$file->delete();
 		}
 
-		$provider->delete();
-
-		register_error("Could not save picture");
-		forward(REFERER);
+		register_error($error);
+		forward($provider->getURL());
 	}
 
 	$provider->icon_ts = time();

@@ -19,15 +19,18 @@ if (!array_key_exists($size, ServiceProvider::$iconSizes)) {
 	$size = 'medium';
 }
 
+$width = ServiceProvider::$iconSizes[$size];
+
 if (!($provider instanceof ServiceProvider)) {
 	return true;
 }
 
 $title = htmlspecialchars($provider->title, ENT_QUOTES, 'UTF-8', false);
-
 $icon_url = elgg_format_url($provider->getIconURL($size));
+
 echo elgg_view('output/img', array(
 	'src' => $icon_url,
 	'alt' => $title,
-	'title' => $title
+	'title' => $title,
+	'width' => $width
 ));

@@ -63,7 +63,7 @@ extract($vars);
 <div>
 	<label>Expires (listings that have expired will not show up except to admins)</label><br />
 	<?php
-	echo elgg_view('input/datepicker', array(
+	echo elgg_view('input/date', array(
 		'name' => 'expires',
 		'value' => $expires
 	));
